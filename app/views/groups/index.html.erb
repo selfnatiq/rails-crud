@@ -1,0 +1,63 @@
+<h4>Flights Aeroport</h4>
+
+<%= form_for(@group) do |f| %>
+    <div class="form-group">
+        <%= f.label :groupname, "FLIGHT:" %>
+        <%= f.text_field :groupname, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :code, "CODE:" %>
+        <%= f.text_field :code, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :des1, "FROM/TO:" %>
+        <%= f.text_field :des1, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :des2, "DEPARTURE Datetime:" %>
+        <%= f.text_field :des2, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :des3, "ARRIVAL Datetime:" %>
+        <%= f.text_field :des3, class: "form-control" %>
+    </div>
+
+    <%= f.submit "Save Flight", class: "btn btn-success my-1" %>
+<% end %>
+
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>Flights</th>
+            <th>CODE</th>
+            <th>FROM/TO</th>
+            <th>DEPARTURE Datetime</th>
+            <th>DESTINATION Datetime</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @groups.each do |g| %>
+            <tr>
+                <td><%= g.groupname %></td>
+                <td><%= g.code %></td>
+                <td><%= g.des1 %></td>
+                <td><%= g.des2 %></td>
+                <td><%= g.des3 %></td>
+                <td><%= link_to "Delete", group_path(g), class: "btn btn-danger", data: {method: :delete, confirm: "Are you sure!"} %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<div class="border rounded p-2">
+    <span>Number of flights: </span> <b><%= @groups.length %></b>
+</div>
+
+
+<%= link_to "Passengers", people_index_path, class: "btn btn-success my-2" %>
+

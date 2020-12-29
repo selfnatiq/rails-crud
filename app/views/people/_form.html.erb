@@ -1,0 +1,57 @@
+<%= form_for(@person) do |f| %>
+    <div class="form-group">
+        <%= f.label :name, "NAME:" %>
+        <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :firstname, "FIRST:" %>
+        <%= f.text_field :firstname, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :group_id, "FLIGHTS:" %>
+        <%= f.collection_select :group_id, @groups, :id, :groupname, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :email, "EMAIL:" %>
+        <%= f.email_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :age, "AGE:" %>
+        <%= f.number_field :age, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <label>SEX:</label>
+        <div class="form-check-inline">
+            <%= f.radio_button :sex, false, class: "form-check-input", checked: true %>
+            <%= f.label :sex, "Male", class: "form-check-label" %>
+        </div>
+
+        <div class="form-check-inline">
+            <%= f.radio_button :sex, true, class: "form-check-input" %>
+            <%= f.label :sex, "Female", class: "form-check-label" %>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :des1, "PASSPORT:" %>
+        <%= f.text_field :des1, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :des2, "BIRTH:" %>
+        <%= f.text_field :des2, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :des3, "RATED:" %>
+        <%= f.text_field :des3, class: "form-control" %>
+    </div>
+
+    <%= f.submit "SAVE PASSENGER", class: "btn btn-success" %>
+    <%= link_to "CANCEL", :root, class: "btn btn-danger" %>
+<% end %>

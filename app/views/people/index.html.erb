@@ -1,0 +1,62 @@
+<h4>PASSENGERS</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nr.</th>
+            <th>FLIGHT</th>
+            <th>NAME</th>
+            <th>FIRST</th>
+            <th>EMAIL</th>
+            <th>AGE</th>
+            <th>SEX</th>
+            <th>PASSPORT</th>
+            <th>BIRTH</th>
+            <th>RATED</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @people.each do |p| %>
+          <tr>
+            <td><%= p.id %></td>
+            <td><%= p.group.groupname %></td>
+            <td><%= p.name %></td>
+            <td><%= p.firstname %></td>
+            <td><%= p.email %></td>
+            <td><%= p.age %></td>
+            <td><%= p.sex ? 'Female' : 'Male' %></td>
+            <td><%= p.des1 %></td>
+            <td><%= p.des2 %></td>
+            <td class="<%= p.des3.downcase == "wanted" && 'text-danger' %>"><%= p.des3.downcase == "wanted" ? 'WANTED Police is coming!' : p.des3 %></td>
+            <td>
+                <%= link_to "Edit", edit_person_path(p), class: "btn btn-sm btn-warning mb-1" %>
+                <%= link_to "Delete", person_path(p), class: "btn btn-sm btn-danger", data: { method: :delete, confirm: "Are you sure!"} %>
+            </td>
+          </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<div class="border rounded p-2">
+    <span>Number of People: </span> <b><%= @people.length %></b>
+</div>
+
+<div class="border rounded p-2">
+    <span>AVG of People: </span> <b><%= @age_avg_people %></b>
+</div>
+
+<div class="row p-2">
+    <div class="col-1">
+        <span>FLIGHT: </span> 
+    </div>
+    <div class="col-10"> 
+        <% @groups.each do |g| %>
+            <%= g.person_ids.length %> ON <%= g.groupname %></br>
+        <% end %>
+    </div>
+</div>
+
+<div class="my-3">
+    <%= link_to "ADD Passenger", new_person_path, class: "btn btn-outline-success" %>
+    <%= link_to "FLIGHTS", groups_index_path, class: "btn btn-outline-info" %>
+</div>
